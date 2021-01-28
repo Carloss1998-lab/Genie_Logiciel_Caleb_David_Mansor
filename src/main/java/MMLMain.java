@@ -19,12 +19,18 @@ public class MMLMain {
 		// predictive variables/target: all except "variety"
 		// ML metric: not only accuracy 
 		
-		// System.err.println(args[0]);
+		//System.err.println(args[0]);
 		// System.err.println(args[1]);
+		System.out.println(args.length);
+		String str = null;
+		if(args.length== 0){
+			str = Files.readString(Paths.get("mml.json"));
+		}
+		else{
+			str = Files.readString(Paths.get(args[0]));
+		}
+		//String str = Files.readString(Paths.get("mml.json"));
 		
-		
-		
-		String str = Files.readString(Paths.get("mml.json"));
 		
 		
 		// String str = "{ \"file_path\": \"iris.csv\", \"target\": 'variety' }";
@@ -60,7 +66,6 @@ public class MMLMain {
 		//ConfigurationML configuration = new ConfigurationML(args[0], args[1]);
 		MLExecutor ex = null;
 		
-		System.out.println(tl);
 		if (tl.equals("PYTHON")) {			
 			ex = new PythonMLExecutor(configuration);				
 		}		

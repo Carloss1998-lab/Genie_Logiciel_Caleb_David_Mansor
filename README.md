@@ -10,9 +10,9 @@ In a sense, doing machine learning in a declarative way, without fighting with t
 
   - [x] augmenter les fichiers JSON pour prendre en compte davantage de paramètres (eg séparateur dans le dataset, hyperparamètres) y compris lors de la génération de code en Python et R (étendre ConfigurationML puis implémenter le nécessaire dans generateCode de la classe PythonMLExecutor et de la classe RLanguageMLExecutor)
 
-  - [ ] faire en sorte que le langage cible (Python, R ou Julia) soit spécifié dans le JSON (et non directement dans le code Java comme c'est le cas actuellement)
+  - [x] faire en sorte que le langage cible (Python, R ou Julia) soit spécifié dans le JSON (et non directement dans le code Java comme c'est le cas actuellement)
 
-  - [ ] par défaut, s'il n'y a pas d'arguments à MMLMain, le fichier "mml.json" situé à la racine sera utilisé... si un argument est donné (donc args[0]), alors ce sera pour indiquer un nouveau fichier json à considérer pour la génération/exécution du code
+  - [x] par défaut, s'il n'y a pas d'arguments à MMLMain, le fichier "mml.json" situé à la racine sera utilisé... si un argument est donné (donc args[0]), alors ce sera pour indiquer un nouveau fichier json à considérer pour la génération/exécution du code
 
   - [ ] tester "manuellement" votre solution (sur différents ".json" avec différents datasets, variables prédictives, etc.)
 
