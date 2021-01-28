@@ -1,3 +1,5 @@
+package main.java;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -85,7 +87,7 @@ public class PythonMLExecutor extends MLExecutor {
 	public MLResult run() throws IOException {
 		// execute the generated Python code
 		// roughly: exec "python foofile.py"
-		Process p = Runtime.getRuntime().exec("python3 " + PYTHON_OUTPUT);
+		Process p = Runtime.getRuntime().exec("python " + PYTHON_OUTPUT);
 	
 		// output
 		BufferedReader stdInput = new BufferedReader(new 

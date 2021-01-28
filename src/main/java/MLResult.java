@@ -1,3 +1,7 @@
+package main.java;
+
+
+
 // results of an execution (in Python, R or Julia...)
 public class MLResult {
 	
