@@ -4,7 +4,7 @@ from sklearn import tree
 from sklearn.metrics import accuracy_score
 
 # Using pandas to import the dataset
-df = pd.read_csv("iris.csv",sep="," )
+df = pd.read_csv("kyphosis.csv",sep="," )
 
 # Learn more on pandas read_csv :
 #     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html
@@ -13,8 +13,8 @@ df = pd.read_csv("iris.csv",sep="," )
 
 
 # Spliting dataset between features (X) and label (y)
-X = df.drop(columns=["variety"])
-y = df["variety"]
+X = df.loc[:,["Age","Number","Start"]]
+y = df["Kyphosis"]
 
 # pandas dataframe operations :
 #     https://pandas.pydata.org/pandas-docs/stable/reference/frame.html
@@ -51,8 +51,7 @@ for i in metrics:
 		print("Accuracy : "  +str(accuracy_score(y_test, clf.predict(X_test)))+"\n")
 	else:
 		score = eval(i+"_score(y_test, clf.predict(X_test),average = \"macro\"  )")
-		print(i +": "+str(score)+"\n")
-# scikit-learn accuracy_score :
+		print(i +": "+str(score)+"\n")	# scikit-learn accuracy_score :
 #     https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html
 # Other scikit-learn metrics :
 #     https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics

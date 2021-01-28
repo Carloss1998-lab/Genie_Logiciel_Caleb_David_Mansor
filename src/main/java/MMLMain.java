@@ -23,10 +23,11 @@ public class MMLMain {
 		
 		//System.err.println(args[0]);
 		// System.err.println(args[1]);
-		System.out.println(args.length);
+		//System.out.println(args.length);
+
 		String str = null;
 		if(args.length== 0){
-			str = Files.readString(Paths.get("mml.json"));
+			str = Files.readString(Paths.get("mml1.json"));
 		}
 		else{
 			str = Files.readString(Paths.get(args[0]));
@@ -53,30 +54,36 @@ public class MMLMain {
 		
 		JSONObject obj = new JSONObject(str);
 		JSONObject d = (JSONObject) obj.get("dataset");
-		String f = d.getString("filename");
-		String s = d.getString("separator"); // 
-		// String f = obj.getString("file_path"); // args[0]
-		String t = obj.getString("target_variable"); // args[1]
+		String filename = d.getString("filename");
+		String separator = d.getString("separator"); // 
+		String target_variable = obj.getString("target_variable"); // args[1]
 		float training_size = obj.getFloat("train_size"); // 
 		String language = obj.getString("targetLanguage");
 		JSONArray metrics = obj.getJSONArray("metrics");
-		ConfigurationML configuration = new ConfigurationML(f, t,s,language, training_size, metrics);
-		System.out.println(metrics.toString().getClass());
-		String tl = language; //
+		JSONArray predictive_Variables = obj.getJSONArray("predictive_Variables");
+		ConfigurationML configuration = new ConfigurationML(filename, 
+				target_variable,separator,language, training_size, metrics, 
+				predictive_Variables);
+		String target_langage = language; //
+
+		System.out.println("Target langage: "+ target_langage);
+		System.out.println("Dataset: "+filename);
+		System.out.println("Predictive variables: "+ predictive_Variables);
+		System.out.println("Target variable: "+ target_variable);
 
 		// TODO: instead of command line arguments, we will use JSON files to configure the compilers
 		// YAML, JSON, XML, etc.
 		//ConfigurationML configuration = new ConfigurationML(args[0], args[1]);
 		MLExecutor ex = null;
 		
-		if (tl.equals("PYTHON")) {			
+		if (target_langage.equals("PYTHON")) {			
 			ex = new PythonMLExecutor(configuration);				
 		}		
-		else if (tl.equals("R")) {			
+		else if (target_langage.equals("R")) {			
 			ex = new RLanguageMLExecutor(configuration);			
 		}
 		
-		else if (tl.equals("JULIA")) {
+		else if (target_langage.equals("JULIA")) {
 			// ex = new JuliaMLExecutor();
 			System.err.println("Unsupported target language (TODO)");
 			// TODO

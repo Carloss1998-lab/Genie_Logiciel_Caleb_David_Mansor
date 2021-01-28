@@ -6,5 +6,6 @@
  "train_size":0.7,
  "target_variable": "variety",
  "metrics" : ["accuracy", "precision"],
- "targetLanguage" : "PYTHON"
+ "targetLanguage" : "PYTHON",
+ "predictive_Variables":["sepal.width","petal.length"]
 }

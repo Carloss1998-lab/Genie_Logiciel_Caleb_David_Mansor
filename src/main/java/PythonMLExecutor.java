@@ -11,6 +11,8 @@ import com.google.common.io.Files;
 
 import org.json.JSONArray;
 
+import jdk.nashorn.internal.scripts.JS;
+
 public class PythonMLExecutor extends MLExecutor {
 	
 	private final String PYTHON_OUTPUT = "foofile.py";
@@ -27,6 +29,7 @@ public class PythonMLExecutor extends MLExecutor {
 		String separator =  configuration.getSeparator();
 		float train_size = configuration.getTrainSize();
 		JSONArray metrics = configuration.getMetrics();	
+		JSONArray predictive_Variables = configuration.getPredictiveVariables();
 				
 		// Python code 
 		String pythonCode = "import pandas as pd\n"
@@ -44,7 +47,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "\n"
 				+ "\n"
 				+ "# Spliting dataset between features (X) and label (y)\n"
-				+ "X = df.drop(columns=[\""+target+"\"])\n"
+				+ "X = df.loc[:,"+ predictive_Variables.toString()+"]\n"
 				+ "y = df[\""+target+"\"]\n"
 				+ "\n"
 				+ "# pandas dataframe operations :\n"
@@ -82,7 +85,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+"\t\tprint(\"Accuracy : \"  +str(accuracy_score(y_test, clf.predict(X_test)))+\"\\n\")\n"
 				+ "\telse:\n"
 				+ "\t\tscore = eval(i+\"_score(y_test, clf.predict(X_test),average = \\\"macro\\\"  )\")\n"
-				+ "\t\tprint(i +\": \"+str(score)+\"\\n\")\n"
+				+ "\t\tprint(i +\": \"+str(score)+\"\\n\")\t"
 				+ "# scikit-learn accuracy_score :\n"
 				+ "#     https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html\n"
 				+ "# Other scikit-learn metrics :\n"
