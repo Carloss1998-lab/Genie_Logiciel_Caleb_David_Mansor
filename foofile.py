@@ -44,8 +44,14 @@ clf.fit(X_train, y_train)
 # Compute and display the accuracy
 accuracy = accuracy_score(y_test, clf.predict(X_test))
 
-print(accuracy)
-
+metrics = ["accuracy","precision"]
+for i in metrics:
+	exec("from sklearn.metrics import " + i +"_score")
+	if i =="accuracy":
+		print("Accuracy : "  +str(accuracy_score(y_test, clf.predict(X_test)))+"\n")
+	else:
+		score = eval(i+"_score(y_test, clf.predict(X_test),average = \"macro\"  )")
+		print(i +": "+str(score)+"\n")
 # scikit-learn accuracy_score :
 #     https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html
 # Other scikit-learn metrics :

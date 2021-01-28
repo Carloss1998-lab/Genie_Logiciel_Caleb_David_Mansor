@@ -9,6 +9,8 @@ import javax.swing.JPopupMenu.Separator;
 
 import com.google.common.io.Files;
 
+import org.json.JSONArray;
+
 public class PythonMLExecutor extends MLExecutor {
 	
 	private final String PYTHON_OUTPUT = "foofile.py";
@@ -24,7 +26,7 @@ public class PythonMLExecutor extends MLExecutor {
 		String target = configuration.getTarget();
 		String separator =  configuration.getSeparator();
 		float train_size = configuration.getTrainSize();
-		
+		JSONArray metrics = configuration.getMetrics();	
 				
 		// Python code 
 		String pythonCode = "import pandas as pd\n"
@@ -73,8 +75,14 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "# Compute and display the accuracy\n"
 				+ "accuracy = accuracy_score(y_test, clf.predict(X_test))\n"
 				+ "\n"
-				+ "print(accuracy)\n"
-				+ "\n"
+				+"metrics = "+metrics.toString()+"\n"
+				+"for i in metrics:\n"
+				+"\texec(\"from sklearn.metrics import \" + i +\"_score\")\n"
+				+"\tif i ==\"accuracy\":\n"
+				+"\t\tprint(\"Accuracy : \"  +str(accuracy_score(y_test, clf.predict(X_test)))+\"\\n\")\n"
+				+ "\telse:\n"
+				+ "\t\tscore = eval(i+\"_score(y_test, clf.predict(X_test),average = \\\"macro\\\"  )\")\n"
+				+ "\t\tprint(i +\": \"+str(score)+\"\\n\")\n"
 				+ "# scikit-learn accuracy_score :\n"
 				+ "#     https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html\n"
 				+ "# Other scikit-learn metrics :\n"

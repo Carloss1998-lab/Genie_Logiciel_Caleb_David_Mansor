@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 
 import com.google.common.graph.ElementOrder.Type;
 
+import org.checkerframework.common.reflection.qual.GetClass;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MMLMain {
@@ -57,8 +59,9 @@ public class MMLMain {
 		String t = obj.getString("target_variable"); // args[1]
 		float training_size = obj.getFloat("train_size"); // 
 		String language = obj.getString("targetLanguage");
-		ConfigurationML configuration = new ConfigurationML(f, t,s,language, training_size);
-		
+		JSONArray metrics = obj.getJSONArray("metrics");
+		ConfigurationML configuration = new ConfigurationML(f, t,s,language, training_size, metrics);
+		System.out.println(metrics.toString().getClass());
 		String tl = language; //
 
 		// TODO: instead of command line arguments, we will use JSON files to configure the compilers
