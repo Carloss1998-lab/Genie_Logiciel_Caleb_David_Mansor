@@ -51,7 +51,6 @@ public class MMLMain {
 		ConfigurationML configuration = new ConfigurationML(f, t);
 		
 		
-		
 		// TODO: instead of command line arguments, we will use JSON files to configure the compilers
 		// YAML, JSON, XML, etc.
 		//ConfigurationML configuration = new ConfigurationML(args[0], args[1]);
@@ -74,11 +73,9 @@ public class MMLMain {
 		else {
 			System.err.println("Unrecognized target language");
 			// TODO 
-		}
-		
-		
+		}		
 		ex.generateCode();
-		ex.run();	
+		System.out.print(ex.run().getStringResult());	
 		
 	}
 
