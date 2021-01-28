@@ -4,7 +4,7 @@ from sklearn import tree
 from sklearn.metrics import accuracy_score
 
 # Using pandas to import the dataset
-df = pd.read_csv("iris.csv")
+df = pd.read_csv("iris.csv",sep="," )
 
 # Learn more on pandas read_csv :
 #     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html

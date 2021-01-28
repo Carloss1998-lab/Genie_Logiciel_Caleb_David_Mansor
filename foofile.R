@@ -1,6 +1,6 @@
 library(rpart)
 
-dataset = read.csv('iris.csv')
+dataset = read.csv('iris.csv',sep=",")
 
 # Spliting dataset into training set and test set
 train_ind = sample(1:nrow(dataset), size = nrow(dataset)*0.7)

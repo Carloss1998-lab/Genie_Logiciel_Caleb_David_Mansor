@@ -4,6 +4,8 @@ package main.java;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.google.common.graph.ElementOrder.Type;
+
 import org.json.JSONObject;
 
 public class MMLMain {
@@ -20,7 +22,6 @@ public class MMLMain {
 		// System.err.println(args[0]);
 		// System.err.println(args[1]);
 		
-		TargetLanguage tl = TargetLanguage.PYTHON; // 
 		
 		
 		String str = Files.readString(Paths.get("mml.json"));
@@ -45,26 +46,29 @@ public class MMLMain {
 		JSONObject obj = new JSONObject(str);
 		JSONObject d = (JSONObject) obj.get("dataset");
 		String f = d.getString("filename");
+		String s = d.getString("separator"); // 
 		// String f = obj.getString("file_path"); // args[0]
 		String t = obj.getString("target_variable"); // args[1]
-		int training_size = obj.getInt("training"); // TODO
-		ConfigurationML configuration = new ConfigurationML(f, t);
+		float training_size = obj.getFloat("train_size"); // 
+		String language = obj.getString("targetLanguage");
+		ConfigurationML configuration = new ConfigurationML(f, t,s,language, training_size);
 		
-		
+		String tl = language; //
+
 		// TODO: instead of command line arguments, we will use JSON files to configure the compilers
 		// YAML, JSON, XML, etc.
 		//ConfigurationML configuration = new ConfigurationML(args[0], args[1]);
 		MLExecutor ex = null;
 		
-		
-		if (tl == TargetLanguage.PYTHON) {			
+		System.out.println(tl);
+		if (tl.equals("PYTHON")) {			
 			ex = new PythonMLExecutor(configuration);				
 		}		
-		else if (tl == TargetLanguage.R) {			
+		else if (tl.equals("R")) {			
 			ex = new RLanguageMLExecutor(configuration);			
 		}
 		
-		else if (tl == TargetLanguage.JULIA) {
+		else if (tl.equals("JULIA")) {
 			// ex = new JuliaMLExecutor();
 			System.err.println("Unsupported target language (TODO)");
 			// TODO

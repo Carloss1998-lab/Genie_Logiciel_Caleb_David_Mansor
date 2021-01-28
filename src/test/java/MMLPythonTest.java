@@ -6,6 +6,12 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import main.java.ConfigurationML;
+import main.java.MLExecutor;
+import main.java.MLResult;
+import main.java.PythonMLExecutor;
+import main.java.RLanguageMLExecutor;
+
 public class MMLPythonTest {
 	
 	

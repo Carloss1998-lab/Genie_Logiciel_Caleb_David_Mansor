@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.swing.JPopupMenu.Separator;
+
 import com.google.common.io.Files;
 
 public class PythonMLExecutor extends MLExecutor {
@@ -20,6 +22,8 @@ public class PythonMLExecutor extends MLExecutor {
 		
 		String file_path = configuration.getFilePath();
 		String target = configuration.getTarget();
+		String separator =  configuration.getSeparator();
+		float train_size = configuration.getTrainSize();
 		
 				
 		// Python code 
@@ -29,7 +33,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "from sklearn.metrics import accuracy_score\n"
 				+ "\n"
 				+ "# Using pandas to import the dataset\n"
-				+ "df = pd.read_csv(\""+ file_path +"\")\n"
+				+ "df = pd.read_csv(\""+ file_path +"\""+",sep=\""+separator+"\" )\n"
 				+ "\n"
 				+ "# Learn more on pandas read_csv :\n"
 				+ "#     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html\n"
@@ -46,7 +50,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "\n"
 				+ "\n"
 				+ "# Spliting dataset into training set and test set\n"
-				+ "test_size = 0.3\n"
+				+ "test_size = "+Float.toString(1-train_size)+"\n"
 				+ "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)\n"
 				+ "\n"
 				+ "# scikit-learn train_test_split :\n"
