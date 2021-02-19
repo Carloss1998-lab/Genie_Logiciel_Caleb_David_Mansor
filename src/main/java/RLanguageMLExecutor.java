@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.google.common.io.Files;
+import java.io.*;
+import java.util.regex.*;
 
 public class RLanguageMLExecutor extends MLExecutor {
 
@@ -76,8 +78,26 @@ public class RLanguageMLExecutor extends MLExecutor {
 			// System.out.println(err);
 		}
 		
-		return new MLResult(result);
+		
+	
+		//print\\(acc\\)\\[1\\]\t([0-9]*['.']?[0-9]*)
+	    String pattern_string = "print\\(acc\\)\\[1\\]\\s([0-9]*['.']?[0-9]*)";
+	    //System.out.print(result);
+	    
+	    //String chaine = 
+		Pattern pattern = Pattern.compile(pattern_string);
+	    
+	    //String chaine = "Test <b>regexé</b> <i>Java</i> pour <b>Wikibooks</b> francophone.";
+		//Pattern pattern = Pattern.compile(pattern_string);
+		Matcher matcher = pattern.matcher(result);
+		
+		matcher.find();
+		String acc = matcher.group(1);
+	   
+
+		return new MLResult("R \n ACCURACY :" + acc);
 
 	}
 
 }
+
