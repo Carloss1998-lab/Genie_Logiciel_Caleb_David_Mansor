@@ -5,6 +5,21 @@ The user "just" has to specify a configuration file (in e.g JSON) with informati
 Then, her specification is compiled in different languages/libraries and can then be executed. 
 In a sense, doing machine learning in a declarative way, without fighting with the cryptic details of off-the-self libraries. 
 
+## TO DO
+  - [x] composer un groupe de 4 min. (5 max.) et mettre en place un git commun (eg sur Github): m'indiquer par retour de mail la composition du groupe et l'URL du git
+
+  - [x] augmenter les fichiers JSON pour prendre en compte davantage de paramètres (eg séparateur dans le dataset, hyperparamètres) y compris lors de la génération de code en Python et R (étendre ConfigurationML puis implémenter le nécessaire dans generateCode de la classe PythonMLExecutor et de la classe RLanguageMLExecutor)
+
+  - [x] faire en sorte que le langage cible (Python, R ou Julia) soit spécifié dans le JSON (et non directement dans le code Java comme c'est le cas actuellement)
+
+  - [x] par défaut, s'il n'y a pas d'arguments à MMLMain, le fichier "mml.json" situé à la racine sera utilisé... si un argument est donné (donc args[0]), alors ce sera pour indiquer un nouveau fichier json à considérer pour la génération/exécution du code
+
+  - [ ] tester "manuellement" votre solution (sur différents ".json" avec différents datasets, variables prédictives, etc.)
+
+   - [ ] [bonus] tester automatiquement votre solution en vous inspirant de MMLPythonTest
+
+   - [ ] [bonus] corriger le "bug" du compilateur R qui ne retourne pas seulement le résultat sur la métrique (eg accuracy), mais aussi le code source et les différents résultats des différentes étapes
+
 ## Java implementation
 
 The processing of configuration files and compilers are written in Java. 

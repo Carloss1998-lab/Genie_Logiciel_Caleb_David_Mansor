@@ -1,17 +1,16 @@
 package test.java;
 
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-
-import main.java.ConfigurationML;
+import main.java.ExecutorBuilder;
+import main.java.JsonExtractor;
 import main.java.MLExecutor;
-import main.java.MLResult;
-import main.java.PythonMLExecutor;
-import main.java.RLanguageMLExecutor;
+
 
 public class MMLPythonTest {
 	
@@ -19,58 +18,75 @@ public class MMLPythonTest {
 	@Test
 	public void testPython1() throws Exception {
 		
-		ConfigurationML conf = new ConfigurationML("iris.csv", "variety");
-		MLExecutor ex = new PythonMLExecutor(conf);
-		ex.generateCode();
-		MLResult result = ex.run();	// instead of "void" we get an instance of MLResult
-		// TODO: check assertions over return value (eg it is indeed a float value)
+		String config_file = "mml.json";
+		System.out.println("\n************* Configuration File: " + config_file + " *****************\n");
 		
-		
-		try {
-			Float.parseFloat(result.getStringResult());
-		}
-		catch (Exception e) {
-			fail("not a float (accuracy)!");
-		}
+		String path = Files.readString(Paths.get(config_file));					
+		JsonExtractor json_extractor = new JsonExtractor(path);
+		json_extractor.Extract_information();
+				
+		MLExecutor executor = new ExecutorBuilder().build(json_extractor);
+
+		executor.generateCode();
+	    System.out.println("\n\n\n################################\n##########  RESULTS  ###########\n################################\n\n");	
+		System.out.print(executor.run().getStringResult());
 		
 	}
-	
+
 	@Test
 	public void testPython2() throws Exception {
-		ConfigurationML conf = new ConfigurationML("iris.csv", "varietyyy");
-		MLExecutor ex = new PythonMLExecutor(conf);
-		ex.generateCode();
-		MLResult result = ex.run();	
-		// TODO: should raise an exception
 		
-		System.out.println(result.getStringResult());
 		
-		try {
-			Float.parseFloat(result.getStringResult());
-			fail("issue here!");
-		}
-		catch (Exception e) {
-			assertTrue(true);
-		}
+		String config_file = "mml1.json";
+		System.out.println("\n\n************* Configuration File: " + config_file + " *****************\n\n");
 		
-	}
+		String path = Files.readString(Paths.get(config_file));					
+		JsonExtractor json_extractor = new JsonExtractor(path);
+		json_extractor.Extract_information();
+				
+		MLExecutor executor = new ExecutorBuilder().build(json_extractor);
+
+		executor.generateCode();
+		System.out.print(executor.run().getStringResult());
+		
+}
 	
 	@Test
-	public void testR1() throws Exception {
-		ConfigurationML conf = new ConfigurationML("iris.csv", "variety");
-		MLExecutor ex = new RLanguageMLExecutor(conf);
-		ex.generateCode();
-		MLResult result = ex.run();	
-	
-		System.out.println(result.getStringResult());
+	public void testPython3() throws Exception {
 		
-		try {
-			Float.parseFloat(result.getStringResult());			
-		}
-		catch (Exception e) {
-			fail("issue here!");
-		}
+		String config_file = "mml2.json";
+		
+		System.out.println("\n\n************* Configuration File: " + config_file + " *****************\n\n");
+		
+		String path = Files.readString(Paths.get(config_file));					
+		JsonExtractor json_extractor = new JsonExtractor(path);
+		json_extractor.Extract_information();
+				
+		MLExecutor executor = new ExecutorBuilder().build(json_extractor);
+
+		executor.generateCode();
+	    System.out.println("\n\n\n################################\n##########  RESULTS  ###########\n################################\n\n");	
+		System.out.print(executor.run().getStringResult());
 		
 	}
+	
+	
+	@Test
+	public void testPython4() throws Exception {
 		
+		String config_file = "mml3.json";
+		
+		System.out.println("\n\n************* Configuration File: " + config_file + " *****************\n\n");
+		
+		String path = Files.readString(Paths.get(config_file));					
+		JsonExtractor json_extractor = new JsonExtractor(path);
+		json_extractor.Extract_information();
+				
+		MLExecutor executor = new ExecutorBuilder().build(json_extractor);
+
+		executor.generateCode();
+	    System.out.println("\n\n\n################################\n##########  RESULTS  ###########\n################################\n\n");	
+		System.out.print(executor.run().getStringResult());
+		
+	}
 }

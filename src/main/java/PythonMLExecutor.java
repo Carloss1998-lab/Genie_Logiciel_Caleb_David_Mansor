@@ -1,11 +1,12 @@
 package main.java;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import com.google.common.io.Files;
+import org.json.JSONArray;
+
+//import jdk.nashorn.internal.scripts.JS;
 
 public class PythonMLExecutor extends MLExecutor {
 	
@@ -20,7 +21,10 @@ public class PythonMLExecutor extends MLExecutor {
 		
 		String file_path = configuration.getFilePath();
 		String target = configuration.getTarget();
-		
+		String separator =  configuration.getSeparator();
+		float train_size = configuration.getTrainSize();
+		JSONArray metrics = configuration.getMetrics();	
+		JSONArray predictive_Variables = configuration.getPredictiveVariables();
 				
 		// Python code 
 		String pythonCode = "import pandas as pd\n"
@@ -29,7 +33,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "from sklearn.metrics import accuracy_score\n"
 				+ "\n"
 				+ "# Using pandas to import the dataset\n"
-				+ "df = pd.read_csv(\""+ file_path +"\")\n"
+				+ "df = pd.read_csv(\""+ file_path +"\""+",sep=\""+separator+"\" )\n"
 				+ "\n"
 				+ "# Learn more on pandas read_csv :\n"
 				+ "#     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html\n"
@@ -38,7 +42,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "\n"
 				+ "\n"
 				+ "# Spliting dataset between features (X) and label (y)\n"
-				+ "X = df.drop(columns=[\""+target+"\"])\n"
+				+ "X = df.loc[:,"+ predictive_Variables.toString()+"]\n"
 				+ "y = df[\""+target+"\"]\n"
 				+ "\n"
 				+ "# pandas dataframe operations :\n"
@@ -46,7 +50,7 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "\n"
 				+ "\n"
 				+ "# Spliting dataset into training set and test set\n"
-				+ "test_size = 0.3\n"
+				+ "test_size = "+Float.toString(1-train_size)+"\n"
 				+ "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)\n"
 				+ "\n"
 				+ "# scikit-learn train_test_split :\n"
@@ -69,8 +73,16 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "# Compute and display the accuracy\n"
 				+ "accuracy = accuracy_score(y_test, clf.predict(X_test))\n"
 				+ "\n"
-				+ "print(accuracy)\n"
-				+ "\n"
+				+"metrics = "+metrics.toString()+"\n"
+				+"for i in metrics:\n"
+				+"\texec(\"from sklearn.metrics import \" + i +\"_score\")\n"
+				+"\tif i ==\"accuracy\":\n"
+				+"\t\tprint(\"Accuracy : \"  +str(accuracy_score(y_test, clf.predict(X_test)))+\"\\n\")\n"
+				+"\telif i ==\"f1\":\n"
+				+"\t\tprint(\"F1_score : \"  +str(f1_score(y_test, clf.predict(X_test),average = \"macro\"))+\"\\n\")\n"
+				+ "\telse:\n"
+				+ "\t\tscore = eval(i+\"_score(y_test, clf.predict(X_test),average = \\\"macro\\\"  )\")\n"
+				+ "\t\tprint(i +\": \"+str(score)+\"\\n\")\t"
 				+ "# scikit-learn accuracy_score :\n"
 				+ "#     https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html\n"
 				+ "# Other scikit-learn metrics :\n"
@@ -101,6 +113,8 @@ public class PythonMLExecutor extends MLExecutor {
 	
 		String o;
 		while ((o = stdInput.readLine()) != null) {
+			
+			result += "\n";
 			result += o;
 			// System.out.println(o);
 		}
@@ -110,6 +124,7 @@ public class PythonMLExecutor extends MLExecutor {
 			result += err;
 			// System.out.println(err);
 		}
+		
 		
 		return new MLResult(result);
 
