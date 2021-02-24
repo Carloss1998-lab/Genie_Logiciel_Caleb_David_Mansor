@@ -88,7 +88,7 @@ public class RLanguageMLExecutor extends MLExecutor {
 	    //String chaine = 
 		Pattern pattern = Pattern.compile(pattern_string);
 	    
-	    //String chaine = "Test <b>regexé</b> <i>Java</i> pour <b>Wikibooks</b> francophone.";
+	    //String chaine = "Test <b>regexï¿½</b> <i>Java</i> pour <b>Wikibooks</b> francophone.";
 		//Pattern pattern = Pattern.compile(pattern_string);
 		Matcher matcher = pattern.matcher(result);
 		

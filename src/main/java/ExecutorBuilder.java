@@ -17,8 +17,9 @@ public class ExecutorBuilder{
     	}
     	
     	else if (json_extractor.language.equals("JULIA")) {
-    		// executor = new JuliaMLExecutor();
-    		System.err.println("Unsupported target language (TODO)");
+			// executor = new JuliaMLExecutor();
+			executor = new JuliaLanguageMLExecutor(configuration);
+    		//System.err.println("Unsupported target language (TODO)");
     		// TODO
     }
 	

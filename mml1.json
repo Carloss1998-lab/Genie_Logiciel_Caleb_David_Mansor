@@ -11,7 +11,7 @@
         "recall",
         "f1"
     ],
-    "targetLanguage": "PYTHON",
+    "targetLanguage": "JULIA",
     "predictive_Variables": [
         "Age",
         "Number",
