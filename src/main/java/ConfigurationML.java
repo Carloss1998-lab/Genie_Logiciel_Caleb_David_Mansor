@@ -1,9 +1,13 @@
 package main.java;
 
+import java.io.IOException;
+
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ConfigurationML {
 	
+	//private path;
 	private String file_path; // dataset
 	private String target; // targeted feature (column name)
 	private String separator;// get separator
@@ -11,16 +15,42 @@ public class ConfigurationML {
 	private float train_size;
 	private JSONArray metrics;
 	private JSONArray predictive_Variables ;
+	
+	
+	
 	// TODO
 	
-	public ConfigurationML(JsonExtractor json_extractor) {
-		this.file_path = json_extractor.file_name;
-		this.target = json_extractor.target_variable;
-		this.separator = json_extractor.separator;
-		this.targetLanguage = json_extractor.language;
-		this.train_size = json_extractor.training_size;
-		this.metrics =  json_extractor.metrics;
-		this.predictive_Variables = json_extractor.predictive_Variables;
+	
+	
+		/*public void Extract_information(path) throws IOException
+		{		
+			
+			JSONObject obj = new JSONObject(this.path);
+			JSONObject dataset = (JSONObject)obj.get("dataset");
+			this.file_name = dataset.getString("filename");
+			this.separator = dataset.getString("separator"); 
+			this.target_variable = obj.getString("target_variable"); 
+			this.training_size = obj.getFloat("train_size"); 
+			this.language = obj.getString("targetLanguage");
+			this.metrics = obj.getJSONArray("metrics");
+			this.predictive_Variables = obj.getJSONArray("predictive_Variables");		
+		}
+			*/
+		
+	
+	public ConfigurationML(String path){
+		
+		this.file_path = path;
+		JSONObject obj = new JSONObject(this.file_path);
+		JSONObject dataset = (JSONObject) obj.get("dataset");
+		
+		this.file_path = dataset.getString("filename");
+		this.target = obj.getString("target_variable"); 
+		this.separator = dataset.getString("separator"); 
+		this.targetLanguage = obj.getString("targetLanguage");
+		this.train_size = obj.getFloat("train_size"); 
+		this.metrics =  obj.getJSONArray("metrics");
+		this.predictive_Variables = obj.getJSONArray("predictive_Variables");
 	}
 	
 	

@@ -21,8 +21,7 @@ public class JsonExtractor {
 	}
 	
 	public void Extract_information() throws IOException
-	{
-		
+	{		
 		JSONObject obj = new JSONObject(this.path);
 		JSONObject dataset = (JSONObject) obj.get("dataset");
 		this.file_name = dataset.getString("filename");

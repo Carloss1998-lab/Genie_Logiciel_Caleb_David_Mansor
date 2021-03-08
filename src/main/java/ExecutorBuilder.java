@@ -2,21 +2,21 @@ package main.java;
 
 public class ExecutorBuilder{
 
-    public MLExecutor build(JsonExtractor json_extractor ) {
+    public MLExecutor build(String path ) {
     	
     	
     	
     	MLExecutor executor = null;
-		ConfigurationML configuration = new ConfigurationML(json_extractor);
+		ConfigurationML configuration = new ConfigurationML(path);
 
-    	if (json_extractor.language.equals("PYTHON")) {			
+    	if (configuration.getTargetLanguage().equals("PYTHON")) {			
     		executor = new PythonMLExecutor(configuration);				
     	}		
-    	else if (json_extractor.language.equals("R")) {			
+    	else if (configuration.getTargetLanguage().equals("R")) {			
     		executor = new RLanguageMLExecutor(configuration);			
     	}
     	
-    	else if (json_extractor.language.equals("JULIA")) {
+    	else if (configuration.getTargetLanguage().equals("JULIA")) {
 			// executor = new JuliaMLExecutor();
 			executor = new JuliaLanguageMLExecutor(configuration);
     		//System.err.println("Unsupported target language (TODO)");
@@ -31,11 +31,11 @@ public class ExecutorBuilder{
 	}
 	
     System.out.println("################################\n#########Configurations#########\n################################\n\n");	
-	System.out.println("Target langage: "+ json_extractor.language);
-	System.out.println("Dataset: "+json_extractor.file_name);
-	System.out.println("Predictive variables: "+ json_extractor.predictive_Variables);
-	System.out.println("Target variable: "+ json_extractor.target_variable);
-	System.out.println("Train data proportion: " + json_extractor.training_size );
+	System.out.println("Target langage: "+ configuration.getTargetLanguage());
+	System.out.println("Dataset: "+configuration.getFilePath());
+	System.out.println("Predictive variables: "+ configuration.getPredictiveVariables());
+	System.out.println("Target variable: "+ configuration.getTarget());
+	System.out.println("Train data proportion: " + configuration.getTrainSize());
 
 
 		return executor;		

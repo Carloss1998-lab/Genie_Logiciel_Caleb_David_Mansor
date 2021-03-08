@@ -17,13 +17,14 @@ public class MMLMain {
 		else{
 			path = Files.readString(Paths.get(args[0]));
 		}
+				
 		
-		
-		JsonExtractor json_extractor = new JsonExtractor(path);
-		json_extractor.Extract_information();
+		//ConfigurationML configuration_ml = new ConfigurationML(path);
+		//JsonExtractor json_extractor = new JsonExtractor(path);
+		//json_extractor.Extract_information();
 						
 		
-		MLExecutor executor = new ExecutorBuilder().build(json_extractor);
+		MLExecutor executor = new ExecutorBuilder().build(path);
 
 		executor.generateCode();
 		
