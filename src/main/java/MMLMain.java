@@ -12,7 +12,7 @@ public class MMLMain {
 		
 		String path = null;
 		if(args.length== 0){
-			path = Files.readString(Paths.get("mml1.json"));
+			path = Files.readString(Paths.get("mml2.json"));
 		}
 		else{
 			path = Files.readString(Paths.get(args[0]));
