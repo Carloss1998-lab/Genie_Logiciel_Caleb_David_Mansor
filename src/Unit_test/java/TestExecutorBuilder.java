@@ -15,23 +15,10 @@ import main.java.RLanguageMLExecutor;
 import main.java.ExecutorBuilder;
 import main.java.JuliaLanguageMLExecutor;
 
+
 public class TestExecutorBuilder {
-	String path;
-	@Before
-	public void setUp() throws Exception{
-		// TODO Auto-generated constructor stub
+	
 
-		String config_file = "mml.json";
-		try {
-			 path= Files.readString(Paths.get(config_file));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}					
-		/*JsonExtractor json_extractor = new JsonExtractor(path);
-		json_extractor.Extract_information();*/
-
-	}
 	@After
 	public void tearDown () throws Exception{
 		
@@ -87,6 +74,10 @@ public class TestExecutorBuilder {
 		assertTrue(executor instanceof  PythonMLExecutor);
 		
 	}
+	
+	
+
+
 	
 	
 
