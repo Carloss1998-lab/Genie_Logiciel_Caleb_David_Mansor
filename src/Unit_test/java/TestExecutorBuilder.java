@@ -26,6 +26,7 @@ public class TestExecutorBuilder {
 	@Test
 	public void testRExecutorBuilter() {
 		String config_file = "mml.json";
+		String path=null;
 		try {
 			 path= Files.readString(Paths.get(config_file));
 		} catch (IOException e) {
@@ -43,6 +44,7 @@ public class TestExecutorBuilder {
 	@Test
 	public void testJuliaExecutorBuilter() {
 		String config_file = "mml1.json";
+		String path=null;
 		try {
 			 path= Files.readString(Paths.get(config_file));
 		} catch (IOException e) {
@@ -60,6 +62,7 @@ public class TestExecutorBuilder {
 	@Test
 	public void testPythonExecutorBuilter() {
 		String config_file = "mml2.json";
+		String path=null;
 		try {
 			 path= Files.readString(Paths.get(config_file));
 		} catch (IOException e) {
