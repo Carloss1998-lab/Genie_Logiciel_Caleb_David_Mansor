@@ -26,7 +26,7 @@ The processing of configuration files and compilers are written in Java.
 
 ## Class diagram
 
- ![alt text](diagramm.png) 
+ ![alt text](diagram.png) 
 
 ### Python
 
