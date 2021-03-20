@@ -22,18 +22,18 @@ public class JuliaLanguageMLExecutor extends MLExecutor {
 		
 		String file_path = configuration.getFilePath();
 		String target = configuration.getTarget();
-		JSONArray predictive_Varies = configuration.getPredictiveVariables();
+		JSONArray predictive_Variables = configuration.getPredictiveVariables();
 
-		// R code 
+		// Julia code 
 		String Juliacode = "using Pkg\n" + "using DataFrames \n" + "using DecisionTree \n" + "using CSV \n"
-				+ "using ScikitLearn\n" + "\n" + "\n" + abl"# the dataset\n"
+				+ "using ScikitLearn\n" + "\n" + "\n" + "# the dataset\n"
 				+ "df = CSV.read(\""+ file_path +"\""+", DataFrame; header = 1)\n"
 				+ "# Spliting dataset between features (X) and label (y)\n" + "\n"
 				+ "X = convert(Array, df[:, "+ predictive_Variables.toString()+"]);\n"
 				+ "y = convert(Array, df[:, \""+target+"\"]);\n" + "\n" + "model = DecisionTreeClassifier(max_depth=2)\n"
 				+ "fit!(model, X, y)\n" + "\n" + "using ScikitLearn.CrossValidation: cross_val_score\n"
 				+ "accuracy = cross_val_score(model, X, y, cv=3)\n"
-				+ "println(\"Accuracy : \",accuracy[3])\n";
+				+ "println(\"accuracy : \",accuracy)\n";
 		
 		// serialize code into Python filename
 		

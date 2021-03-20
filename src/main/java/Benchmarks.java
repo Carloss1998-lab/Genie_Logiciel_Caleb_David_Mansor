@@ -1,5 +1,4 @@
 package main.java;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,8 +62,7 @@ public class Benchmarks {
 				benchResults = benchResults+file.getName()+",ScikitLearn,"+execTime+","+accString+"\n";
 				
 				
-				//R
-				
+				//R				
 				executorBuilder.configuration.setTargetLanguage("R");
 				executorBuilder.build();
 				MLExecutor executorR = executorBuilder.executor;
@@ -112,10 +110,7 @@ public class Benchmarks {
 			      System.out.println("\nAn error occurred.");
 			      e.printStackTrace();
 			    }
-
-		}
-		
-		
+			
+		}	
 	}
-
 }

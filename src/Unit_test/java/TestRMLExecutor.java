@@ -1,18 +1,11 @@
 package Unit_test.java;
 import org.junit.Test;
-
 import main.java.ExecutorBuilder;
 import main.java.MLExecutor;
-import main.java.ConfigurationML;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.Before;
-import org.junit.After;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 
 public class TestRMLExecutor {
@@ -49,8 +42,9 @@ public class TestRMLExecutor {
 			e.printStackTrace();
 		}
 		
-		MLExecutor executor = new ExecutorBuilder().build(path);
-
+		ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
+		executorBuilder.build();
+		MLExecutor executor = executorBuilder.executor;
 		executor.generateCode();
 	   foofile = Files.readString(Paths.get("foofile.R"));		
 	   

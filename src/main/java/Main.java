@@ -22,7 +22,6 @@ import java.util.Set;
 
 public class Main {
     private static String Filename;
-    //private static String input1;
     private static String targetLanguage;
     private static String targetVariable;
     private static String predictive;

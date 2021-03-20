@@ -1,18 +1,13 @@
 package Unit_test.java;
 import org.junit.Test;
-
 import main.java.ExecutorBuilder;
 import main.java.MLExecutor;
-import main.java.ConfigurationML;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.Before;
-import org.junit.After;
+
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class TestJuliaMLExecutor {
 	String path;
@@ -20,7 +15,6 @@ public class TestJuliaMLExecutor {
 
 	@Test
 	public void TestGenerateCode() throws IOException {
-		// TODO Auto-generated constructor stub
 		String JuliaCode= "using Pkg\n"
 				+ "using DataFrames \n"
 				+ "using DecisionTree \n"
@@ -45,13 +39,14 @@ public class TestJuliaMLExecutor {
 		try {
 			path= Files.readString(Paths.get("mml1.json"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		MLExecutor executor = new ExecutorBuilder().build(path);
-
+		ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
+		executorBuilder.build();
+		MLExecutor executor = executorBuilder.executor;
 		executor.generateCode();
+		
 	   foofile = Files.readString(Paths.get("foofile.jl"));		
 	   
 	    assertEquals(foofile,JuliaCode);

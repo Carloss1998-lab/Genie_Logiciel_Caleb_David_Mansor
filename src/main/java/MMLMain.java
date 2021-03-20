@@ -1,6 +1,4 @@
 package main.java;
-import static spark.Spark.get;
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -13,11 +11,11 @@ public class MMLMain {
 		
 		
 		//Reading the path of the configuration file. If no file is given when executing the code, the
-		//configuration file to use is to be set here.
-		String path = null;
+	   //configuration file to use is to be set here.
+	   String path = null;
 
 		if(args.length == 0){
-			path = Files.readString(Paths.get("mml1.json"));
+			path = Files.readString(Paths.get("mml2.json"));
 
 		}
 		else{
@@ -26,16 +24,17 @@ public class MMLMain {
 		
 						
 		//Building an executor according to the specified configuration file and generating the code		
-		/*ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
+	    ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
 		executorBuilder.build();
 		MLExecutor executor = executorBuilder.executor;
 	    executor.generateCode();
 		
 		
 	    //The results are displayed	in the terminal   
-		System.out.print(executor.run().getStringResult());*/
+		System.out.print(executor.run().getStringResult());
 		
-		new Benchmarks("benchmarks/").launchBenchmarks(5);
+		
+		//new Benchmarks("benchmarks/").launchBenchmarks(5);
 		
 		
 		

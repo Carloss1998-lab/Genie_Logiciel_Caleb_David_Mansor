@@ -1,19 +1,11 @@
 package Unit_test.java;
-
 import org.junit.Test;
-
 import main.java.ExecutorBuilder;
 import main.java.MLExecutor;
-import main.java.ConfigurationML;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.Before;
-import org.junit.After;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class TestPythonMLExecutor {
 	String path ;
@@ -84,16 +76,17 @@ public class TestPythonMLExecutor {
 	@Test
 
 	public void TestGenerateCode() throws IOException {
-		// TODO Auto-generated constructor stub
 		
 
 			try {
 				path= Files.readString(Paths.get("mml1.json"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			MLExecutor executor = new ExecutorBuilder().build(path);
+			
+			ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
+			executorBuilder.build();
+			MLExecutor executor = executorBuilder.executor;
 
 			executor.generateCode();
 			
