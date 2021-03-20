@@ -1,24 +1,24 @@
 # multi machine learning (MML)
 
-The goal of this project is to provide high-level facilities to perform machine learning tasks (e.g classification).
+The goal of this project is to provide high-level facilities to perform machine learning tasks (e.g. classification).
 The user "just" has to specify a configuration file (in e.g JSON) with information about the dataset, the predictive variables, etc. 
 Then, her specification is compiled in different languages/libraries and can then be executed. 
 In a sense, doing machine learning in a declarative way, without fighting with the cryptic details of off-the-self libraries. 
 
 ## TO DO
-  - [x] composer un groupe de 4 min. (5 max.) et mettre en place un git commun (eg sur Github): m'indiquer par retour de mail la composition du groupe et l'URL du git
+  - [x] compose a group of 4 min. (5 max.) and set up a common git (eg on Github): tell me by return mail the composition of the group and the git URL
 
-  - [x] augmenter les fichiers JSON pour prendre en compte davantage de paramètres (eg séparateur dans le dataset, hyperparamètres) y compris lors de la génération de code en Python et R (étendre ConfigurationML puis implémenter le nécessaire dans generateCode de la classe PythonMLExecutor et de la classe RLanguageMLExecutor)
+  - [x] increase the JSON files to take into account more parameters (eg separator in the dataset, hyperparameters) including when generating code in Python and R (extend ConfigurationML then implement the necessary in generateCode of the PythonMLExecutor class and the RLanguageMLExecutor class)
 
-  - [x] faire en sorte que le langage cible (Python, R ou Julia) soit spécifié dans le JSON (et non directement dans le code Java comme c'est le cas actuellement)
+  - [x] make sure that the target language (Python, R or Julia) is specified in the JSON (and not directly in the Java code as it is currently the case)
 
-  - [x] par défaut, s'il n'y a pas d'arguments à MMLMain, le fichier "mml.json" situé à la racine sera utilisé... si un argument est donné (donc args[0]), alors ce sera pour indiquer un nouveau fichier json à considérer pour la génération/exécution du code
+  - [x] by default, if there are no arguments to MMLMain, the "mml.json" file located at the root will be used... if an argument is given (so args[0]), then it will be to indicate a new json file to be considered for the code generation/execution
 
-  - [ ] tester "manuellement" votre solution (sur différents ".json" avec différents datasets, variables prédictives, etc.)
+  - [x] test "manually" your solution (on different ".json" with different datasets, predictive variables, etc.)
 
-   - [ ] [bonus] tester automatiquement votre solution en vous inspirant de MMLPythonTest
+   - [x] [bonus] automatically test your solution using MMLPythonTest
 
-   - [ ] [bonus] corriger le "bug" du compilateur R qui ne retourne pas seulement le résultat sur la métrique (eg accuracy), mais aussi le code source et les différents résultats des différentes étapes
+   - [x] [bonus] fix the "bug" of the R compiler that doesn't return only the result on the metric (eg accuracy), but also the source code and the different results of the different steps
 
 ## Java implementation
 
@@ -38,21 +38,23 @@ warning: on Windows system, the `python` command can well be `py`
 ### Julia
 
 `Julia` should be installed.
-Add  libraries as follow:
-using Pkg
-using DataFrames 
-using DecisionTree 
-using CSV 
-using ScikitLearn
+Add libraries as follow:
+  - using Pkg
+  - using DataFrames 
+  - using DecisionTree 
+  - using CSV 
+  - using ScikitLearn
 
 ### Docker 
 
 Docker files and images are provided to use MML. 
 
-## LANCER LE PROGRAMME
+## LAUNCH THE PROGRAM
 
-- Exécuter le fichier Main.java
-- Ouvrir un navigateur sur l'addresse : localhost:port (Exemple : http://localhost:4567/)
-- Remplir les informations nécéssaires comme sur la figure ci-après :
+- Run the Main.java file
+- Open a browser on the address : localhost:port (Example : http://localhost:4567/)
+- Fill in the necessary information as shown in the figure below:
 
  ![alt text](illustration.png) 
+
+At runtime, a mmlJSON.json file containing the information provided is created and a new page returns the results of the algorithm. (See figure below):
