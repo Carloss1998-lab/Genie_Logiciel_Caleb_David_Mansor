@@ -15,8 +15,10 @@ public class MMLMain {
 		//Reading the path of the configuration file. If no file is given when executing the code, the
 		//configuration file to use is to be set here.
 		String path = null;
+
 		if(args.length == 0){
 			path = Files.readString(Paths.get("mml1.json"));
+
 		}
 		else{
 			path = Files.readString(Paths.get(args[0]));
