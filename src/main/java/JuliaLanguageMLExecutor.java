@@ -32,8 +32,8 @@ public class JuliaLanguageMLExecutor extends MLExecutor {
 				+ "X = convert(Array, df[:, "+ predictive_Variables.toString()+"]);\n"
 				+ "y = convert(Array, df[:, \""+target+"\"]);\n" + "\n" + "model = DecisionTreeClassifier(max_depth=2)\n"
 				+ "fit!(model, X, y)\n" + "\n" + "using ScikitLearn.CrossValidation: cross_val_score\n"
-				+ "accuracy = cross_val_score(model, X, y, cv=2)\n"
-				+ "println(\"Accuracy : \",accuracy[1])\n";
+				+ "accuracy = cross_val_score(model, X, y, cv=3)\n"
+				+ "println(\"Accuracy : \",accuracy[3])\n";
 		
 		// serialize code into Python filename
 		

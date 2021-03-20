@@ -91,6 +91,7 @@ public class Benchmarks {
 					String pattern_string_acc_jl = "([0-9]*['.'][0-9]*)";
 					Pattern patternjl = Pattern.compile(pattern_string_acc_jl);
 					matcher = patternjl.matcher(result);
+					matcher.find();
 					acc = acc+Float.parseFloat(matcher.group(1));
 				}
 				end  = System.currentTimeMillis();

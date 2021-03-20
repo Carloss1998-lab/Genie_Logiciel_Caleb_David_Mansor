@@ -1,20 +1,16 @@
 {
     "dataset": {
-        "filename": "kyphosis.csv",
+        "filename": "iris.csv",
         "separator": ","
     },
-    "train_size": 0.7,
-    "target_variable": "Kyphosis",
+    "train_size": 0.8,
+    "target_variable": "variety",
     "metrics": [
-        "accuracy",
-        "precision",
-        "recall",
-        "f1"
+        "accuracy"
     ],
     "targetLanguage": "",
     "predictive_Variables": [
-        "Age",
-        "Number",
-        "Start"
+        "sepal.width",
+        "petal.length"
     ]
 }

@@ -37,9 +37,22 @@ warning: on Windows system, the `python` command can well be `py`
 
 ### Julia
 
-(TODO)
+`Julia` should be installed.
+Add  libraries as follow:
+using Pkg
+using DataFrames 
+using DecisionTree 
+using CSV 
+using ScikitLearn
 
 ### Docker 
 
 Docker files and images are provided to use MML. 
 
+## LANCER LE PROGRAMME
+
+- Exécuter le fichier Main.java
+- Ouvrir un navigateur sur l'addresse : localhost:port (Exemple : http://localhost:4567/)
+- Remplir les informations nécéssaires comme sur la figure ci-après :
+
+ ![alt text](illustration.png) 
