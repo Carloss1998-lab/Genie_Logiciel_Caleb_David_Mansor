@@ -16,5 +16,5 @@ model = DecisionTreeClassifier(max_depth=2)
 fit!(model, X, y)
 
 using ScikitLearn.CrossValidation: cross_val_score
-accuracy = cross_val_score(model, X, y, cv=3)
-println("Accuracy : ",accuracy)
+accuracy = cross_val_score(model, X, y, cv=2)
+println("Accuracy : ",accuracy[1])

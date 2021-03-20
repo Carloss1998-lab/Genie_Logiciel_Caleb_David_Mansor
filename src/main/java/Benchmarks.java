@@ -23,7 +23,7 @@ public class Benchmarks {
 
 		String benchResults = "Benchmark,Variant,Time(ms),Accuracy\n";
 
-	    String pattern_string_acc = "Accuracy\\s:\\s([0-9]*['.']?[0-9])";	    
+	    String pattern_string_acc = "Accuracy\\s:\\s([0-9]*['.'][0-9]*)";	    
 		Pattern pattern = Pattern.compile(pattern_string_acc);
 		String result = "";
 		Float acc;
@@ -48,7 +48,7 @@ public class Benchmarks {
 
 				executorBuilder.configuration.setTargetLanguage("PYTHON");
 				executorBuilder.build();
-				/*MLExecutor executorPy = executorBuilder.executor;	
+				MLExecutor executorPy = executorBuilder.executor;	
 				start = System.currentTimeMillis();
 				for (int i = 0; i<nbSamples; i++) {
 					result = executorPy.run().getStringResult();    
@@ -78,31 +78,25 @@ public class Benchmarks {
 				end  = System.currentTimeMillis();
 				execTime = (end-start)/nbSamples;
 				acc = acc/nbSamples;
-				benchResults = benchResults+file.getName()+",R,"+execTime+","+accString+"\n";*/
+				benchResults = benchResults+file.getName()+",R,"+execTime+","+accString+"\n";
 
 				//JULIA
-				
 				executorBuilder.configuration.setTargetLanguage("JULIA");
 				executorBuilder.build();
-				MLExecutor executorJul = executorBuilder.executor;		
+				MLExecutor executorJul = executorBuilder.executor;
+				executorJul.generateCode();		
 				start = System.currentTimeMillis();		
 				for (int i = 0; i<nbSamples; i++) {
 					result = executorJul.run().getStringResult();  
-					
-			        result = result.replace("[","");
-			        //System.out.println(mainJsonStr);
-			        result = result.replace("]","");			        
-					
-					System.out.print(result);
-					matcher = pattern.matcher(result);
-					matcher.find();	
-					System.out.print(matcher.find());
+					String pattern_string_acc_jl = "([0-9]*['.'][0-9]*)";
+					Pattern patternjl = Pattern.compile(pattern_string_acc_jl);
+					matcher = patternjl.matcher(result);
 					acc = acc+Float.parseFloat(matcher.group(1));
 				}
 				end  = System.currentTimeMillis();
 				execTime = (end-start)/nbSamples;
 				acc = acc/nbSamples;
-				benchResults = benchResults+file.getName()+",JULIA"+execTime+","+acc+"\n";
+				benchResults = benchResults+file.getName()+",JULIA"+","+execTime+","+acc+"\n";
 								
 
 		    }
