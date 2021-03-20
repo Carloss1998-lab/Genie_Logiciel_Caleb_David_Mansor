@@ -24,6 +24,10 @@ In a sense, doing machine learning in a declarative way, without fighting with t
 
 The processing of configuration files and compilers are written in Java. 
 
+## Class diagram
+
+ ![alt text](illustration.png) 
+
 ### Python
 
 Python 3 should be installed with the pandas and scikit-learn library: 
