@@ -1,3 +1,9 @@
+# AUTHORS
+
+### Caleb Carloss AGUIDA
+### David OUBDA
+### Mansor GUEYE
+
 # multi machine learning (MML)
 
 The goal of this project is to provide high-level facilities to perform machine learning tasks (e.g. classification).
