@@ -24,17 +24,18 @@ public class MMLMain {
 		
 						
 		//Building an executor according to the specified configuration file and generating the code		
-	    ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
+		
+	    /*ExecutorBuilder executorBuilder = new ExecutorBuilder(path);
 		executorBuilder.build();
 		MLExecutor executor = executorBuilder.executor;
-	    executor.generateCode();
+	    executor.generateCode();*/
 		
 		
 	    //The results are displayed	in the terminal   
-		System.out.print(executor.run().getStringResult());
+		//System.out.print(executor.run().getStringResult());
 		
 		
-		//new Benchmarks("benchmarks/").launchBenchmarks(5);
+		new Benchmarks("benchmarks/").launchBenchmarks(5);
 		
 		
 		
