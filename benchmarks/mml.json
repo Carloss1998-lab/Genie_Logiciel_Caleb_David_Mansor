@@ -1,0 +1,11 @@
+{
+ "dataset": {
+   "filename" : "iris.csv",
+   "separator" : ","
+ },
+ "train_size":0.7,
+ "target_variable": "variety",
+ "metrics" : ["accuracy"],
+ "targetLanguage" : "",
+ "predictive_Variables":["sepal.width","petal.length"]
+}

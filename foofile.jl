@@ -17,4 +17,4 @@ fit!(model, X, y)
 
 using ScikitLearn.CrossValidation: cross_val_score
 accuracy = cross_val_score(model, X, y, cv=3)
-println("accuracy : ",accuracy)
+println("Accuracy : ",accuracy)

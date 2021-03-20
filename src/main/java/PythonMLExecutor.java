@@ -6,17 +6,17 @@ import java.io.InputStreamReader;
 import com.google.common.io.Files;
 import org.json.JSONArray;
 
-//import jdk.nashorn.internal.scripts.JS;
 
 public class PythonMLExecutor extends MLExecutor {
 	
 	private final String PYTHON_OUTPUT = "foofile.py";
 	
+	
 	public PythonMLExecutor(ConfigurationML configuration) {
 		this.configuration = configuration;
 	}
 
-	// TODO: refactoring of the code is needed since anti-pattern/bad smell https://fr.wikipedia.org/wiki/Code_smell#Long_Parameter_List
+
 	public void generateCode() throws IOException {
 		
 		String file_path = configuration.getFilePath();
@@ -26,7 +26,7 @@ public class PythonMLExecutor extends MLExecutor {
 		JSONArray metrics = configuration.getMetrics();	
 		JSONArray predictive_Variables = configuration.getPredictiveVariables();
 				
-		// Python code 
+		//Python code 
 		String pythonCode = "import pandas as pd\n"
 				+ "from sklearn.model_selection import train_test_split\n"
 				+ "from sklearn import tree\n"
@@ -89,14 +89,14 @@ public class PythonMLExecutor extends MLExecutor {
 				+ "#     https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics\n"
 				+ "";
 
-		// serialize code into Python filename
-				
+		// serialize code into Python filename				
 		Files.write(pythonCode.getBytes(), new File(PYTHON_OUTPUT));
 
 
 	}
 
 	public MLResult run() throws IOException {
+		
 		// execute the generated Python code
 		// roughly: exec "python foofile.py"
 		Process p = Runtime.getRuntime().exec("python " + PYTHON_OUTPUT);
@@ -116,17 +116,15 @@ public class PythonMLExecutor extends MLExecutor {
 			
 			result += "\n";
 			result += o;
-			// System.out.println(o);
 		}
 	
 		String err; 
 		while ((err = stdError.readLine()) != null) {
 			result += err;
-			// System.out.println(err);
 		}
 		
-		
-		return new MLResult(result);
+		result = "\n\n\n################################\n##########  RESULTS  ###########\n################################\n\n" + result;
+		return new MLResult(result,configuration);
 
 	}
 

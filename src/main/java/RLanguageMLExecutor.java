@@ -44,7 +44,6 @@ public class RLanguageMLExecutor extends MLExecutor {
 				+ "print(acc)\n"
 				+ "";
 		
-		// serialize code into Python filename
 		
 		Files.write(Rcode.getBytes(), new File(R_OUTPUT));
 
@@ -53,8 +52,7 @@ public class RLanguageMLExecutor extends MLExecutor {
 	}
 
 	public MLResult run() throws IOException {
-		// execute the generated Python code
-		// roughly: exec "python foofile.py"
+
 		Process p = Runtime.getRuntime().exec("R -f " + R_OUTPUT);
 	
 		// output
@@ -70,32 +68,26 @@ public class RLanguageMLExecutor extends MLExecutor {
 		String o;
 		while ((o = stdInput.readLine()) != null) {
 			result += o;
-			// System.out.println(o);
 		}
 	
 		String err; 
 		while ((err = stdError.readLine()) != null) {
 			result += err;
-			// System.out.println(err);
 		}
 		
 		
 	
-		//print\\(acc\\)\\[1\\]\t([0-9]*['.']?[0-9]*)
 	    String pattern_string = "print\\(acc\\)\\[1\\]\\s([0-9]*['.']?[0-9]*)";
-	    //System.out.print(result);
 	    
-	    //String chaine = 
 		Pattern pattern = Pattern.compile(pattern_string);
 	    
-	    //String chaine = "Test <b>regex�</b> <i>Java</i> pour <b>Wikibooks</b> francophone.";
-		//Pattern pattern = Pattern.compile(pattern_string);
 		Matcher matcher = pattern.matcher(result);
 		
 		matcher.find();
 		String acc = matcher.group(1);
+		result = "\n\n\n################################\n##########  RESULTS  ###########\n################################\n\n"+ "Accuracy : " + acc;
 	   
-		return new MLResult("ACCURACY :" + acc);
+		return new MLResult(result,this.configuration);
 
 	}
 

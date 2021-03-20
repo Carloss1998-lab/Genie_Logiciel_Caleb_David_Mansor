@@ -33,7 +33,7 @@ public class JuliaLanguageMLExecutor extends MLExecutor {
 				+ "y = convert(Array, df[:, \""+target+"\"]);\n" + "\n" + "model = DecisionTreeClassifier(max_depth=2)\n"
 				+ "fit!(model, X, y)\n" + "\n" + "using ScikitLearn.CrossValidation: cross_val_score\n"
 				+ "accuracy = cross_val_score(model, X, y, cv=3)\n"
-				+ "println(\"accuracy : \",accuracy)\n";
+				+ "println(\"Accuracy : \",accuracy)\n";
 		
 		// serialize code into Python filename
 		
@@ -44,8 +44,7 @@ public class JuliaLanguageMLExecutor extends MLExecutor {
 	}
 
 	public MLResult run() throws IOException {
-		// execute the generated Python code
-		// roughly: exec "python foofile.py"
+		// execute the generated Julia code
 		Process p = Runtime.getRuntime().exec("julia " + JULIA_OUTPUT);
 
 		// output
@@ -61,16 +60,15 @@ public class JuliaLanguageMLExecutor extends MLExecutor {
 
 			result += "\n";
 			result += o;
-			// System.out.println(o);
 		}
 
 		String err;
 		while ((err = stdError.readLine()) != null) {
 			result += err;
-			// System.out.println(err);
 		}
 
-		return new MLResult(result);
+		result = "\n\n\n################################\n##########  RESULTS  ###########\n################################\n\n" + result;
+		return new MLResult(result,configuration);
 
 	}
 

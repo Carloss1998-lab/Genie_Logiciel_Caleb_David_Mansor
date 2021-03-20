@@ -1,61 +1,47 @@
 package main.java;
-
-import java.io.IOException;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 public class ConfigurationML {
 	
-	//private path;
-	private String file_path; // dataset
-	private String target; // targeted feature (column name)
-	private String separator;// get separator
+	private String filePath;
+	private String target;
+	private String separator;
 	private String targetLanguage;
-	private float train_size;
+	private float trainSize;
 	private JSONArray metrics;
-	private JSONArray predictive_Variables ;
+	private JSONArray predictiveVariables;
+	private String configurationDisplay;
 	
-	
-	
-	// TODO
-	
-	
-	
-		/*public void Extract_information(path) throws IOException
-		{		
-			
-			JSONObject obj = new JSONObject(this.path);
-			JSONObject dataset = (JSONObject)obj.get("dataset");
-			this.file_name = dataset.getString("filename");
-			this.separator = dataset.getString("separator"); 
-			this.target_variable = obj.getString("target_variable"); 
-			this.training_size = obj.getFloat("train_size"); 
-			this.language = obj.getString("targetLanguage");
-			this.metrics = obj.getJSONArray("metrics");
-			this.predictive_Variables = obj.getJSONArray("predictive_Variables");		
-		}
-			*/
-		
 	
 	public ConfigurationML(String path){
 		
-		this.file_path = path;
-		JSONObject obj = new JSONObject(this.file_path);
-		JSONObject dataset = (JSONObject) obj.get("dataset");
-		
-		this.file_path = dataset.getString("filename");
+		this.filePath = path;
+		JSONObject obj = new JSONObject(this.filePath);
+		JSONObject dataset = (JSONObject) obj.get("dataset");		
+		this.filePath = dataset.getString("filename");
 		this.target = obj.getString("target_variable"); 
 		this.separator = dataset.getString("separator"); 
 		this.targetLanguage = obj.getString("targetLanguage");
-		this.train_size = obj.getFloat("train_size"); 
+		this.trainSize = obj.getFloat("train_size"); 
 		this.metrics =  obj.getJSONArray("metrics");
-		this.predictive_Variables = obj.getJSONArray("predictive_Variables");
+		this.predictiveVariables = obj.getJSONArray("predictive_Variables");
+		this.configurationDisplay = "################################\n#########Configurations#########\n################################\n\n"
+                +"Target langage: "+targetLanguage
+                +"\n"
+                +"Dataset: "+filePath
+                +"\n"
+                +"Predictive variables: "+predictiveVariables
+                +"\n"
+                +"Target variable: "+target
+                +"\n"
+                +"Train data proportion: " + trainSize+"\n";		
 	}
 	
 	
 	public String getFilePath() {
-		return file_path;
+		return filePath;
 	}
 	
 	public String getTarget() {
@@ -69,15 +55,24 @@ public class ConfigurationML {
 	public String getTargetLanguage() {
 		return targetLanguage;
 	}
+	
+	public void setTargetLanguage(String language) {
+		this.targetLanguage = language;
+	}
 
 	public float getTrainSize() {
-		return train_size;
+		return trainSize;
 	}
 	
 	public JSONArray getMetrics() {
 		return metrics;
 	}
 	public JSONArray getPredictiveVariables(){
-		return predictive_Variables;
+		return predictiveVariables;
+	}
+
+
+	public String getConfigurationDisplay() {
+		return configurationDisplay;
 	}
 }

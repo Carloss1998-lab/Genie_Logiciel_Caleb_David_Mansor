@@ -1,45 +1,39 @@
 package main.java;
 
 public class ExecutorBuilder{
+	
+	ConfigurationML configuration;
+	String configurationDisplay;
+	public MLExecutor executor;				  
 
-    public MLExecutor build(String path ) {
+	
+	public ExecutorBuilder(String path) {
+		
+		this.configuration = new ConfigurationML(path);    	
     	
-    	
-    	
-    	MLExecutor executor = null;
-		ConfigurationML configuration = new ConfigurationML(path);
+		}
+	
+	public void build() {
+		
 
-    	if (configuration.getTargetLanguage().equals("PYTHON")) {			
-    		executor = new PythonMLExecutor(configuration);				
+		
+		System.err.println(this.configuration.getTargetLanguage());
+
+		if (this.configuration.getTargetLanguage().equals("PYTHON")) {			
+    		this.executor = new PythonMLExecutor(this.configuration);				
     	}		
-    	else if (configuration.getTargetLanguage().equals("R")) {			
-    		executor = new RLanguageMLExecutor(configuration);			
+    	else if (this.configuration.getTargetLanguage().equals("R")) {			
+    		this.executor = new RLanguageMLExecutor(this.configuration);			
     	}
     	
-    	else if (configuration.getTargetLanguage().equals("JULIA")) {
-			// executor = new JuliaMLExecutor();
-			executor = new JuliaLanguageMLExecutor(configuration);
-    		//System.err.println("Unsupported target language (TODO)");
-    		// TODO
-    }
-	
-    	
-		
-	else {
-		System.err.println("Unrecognized target language");
-		// TODO 
+    	else if (this.configuration.getTargetLanguage().equals("JULIA")) {
+    		this.executor = new JuliaLanguageMLExecutor(this.configuration);
+    	}
+
+		else {
+			System.err.println("Unrecognized target language");
+			this.executor = null;
 	}
 	
-    System.out.println("################################\n#########Configurations#########\n################################\n\n");	
-	System.out.println("Target langage: "+ configuration.getTargetLanguage());
-	System.out.println("Dataset: "+configuration.getFilePath());
-	System.out.println("Predictive variables: "+ configuration.getPredictiveVariables());
-	System.out.println("Target variable: "+ configuration.getTarget());
-	System.out.println("Train data proportion: " + configuration.getTrainSize());
-
-
-		return executor;		
-    	
-    }
-	
+}
 }

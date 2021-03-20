@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/deep1.png" />
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/4.1.1-beta/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
+	<script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/deep1.png" />
+	<script type="text/javascript">
+$(document).ready(function() {
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 10) {
+      $(".navbar").addClass("bg-dark");
+    } else {
+      $(".navbar").removeClass("bg-dark");
+    }
+  });
+  // If Mobile, add background color when toggler is clicked
+  $(".navbar-toggler").click(function() {
+    if (!$(".navbar-collapse").hasClass("show")) {
+      $(".navbar").addClass("bg-dark");
+    } else {
+      if ($(window).scrollTop() < 10) {
+        $(".navbar").removeClass("bg-dark");
+      } else {
+      }
+    }
+  });
+});
+
+</script>
+
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	<style>
+  nav ul li a {color: #FFFFFF;
+font-weight: lighter;
+	font-family: 'Poppins', san}
+  nav ul li a:hover {color: #000000;
+	background: #fff;}
+}
+
+</style>
+
+
+
+	<title> Deep </title>
+
+	<style>
+
+          .carousel-item {
+          height: 150vh;
+          min-height: 350px;
+          background: no-repeat center center scroll;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;}
+
+
+          .select-algo-class {
+            position: r;
+            width: 600px;
+            height: 100px;
+            margin: 11% 30%;
+            text-align: center;
+          }
+          .select-algo-class h1 {
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 40px;
+          }
+          .select-algo-class h1 span {
+            color: #00fecb;
+          }
+
+
+          nav ul li a {color: #FFFFFF;
+          font-weight: lighter;
+            font-family: 'Poppins', san}
+
+          nav ul li a:hover {color: #000000;
+            background: #fff;}
+          }
+
+      </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light ">
+	<a class="navbar-brand" href="#">
+		<img src="deep.png" class="d-inline-block align-top" alt="" loading="lazy">
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		</ul>
+		<ul class="nav justify-content-end">
+			<li class="nav-item active">
+				<a class="nav-link" href="http://localhost:8090/mml-web/Accueil.php">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="http://localhost:8090/mml-web/MML.php">Multi Machine Learning</a>
+			</li>
+			<li class="nav-item"><a class="nav-link"
+									href="mailto:davidoubda@gmail.com">Contact</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="carousel-item active" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),  url('https://www.getsmarter.com/disk/public/sBBGDTboLgihDAZHFNC7aFHj/mit_sloan_csail_machine_learning_course_page_large_header_banner.jpg')">
+
+	<div class="select-algo-class">
+
+
+
+		<div class="col-md-15">
+			<div class="card mb-3">
+				<div class="card text-white bg-dark mb-9" style="max-width: 40rem;">
+
+					<div class="card-header">
+						<h1> Submit   <span>parameters</span></h1>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<form  method="post" action="/val" enctype="multipart/form-data">
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Dataset</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="file" name="myFile" class="form-control">
+									<span class="input-group-btn">
+                             </span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<hr>
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Separator</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Separateur" name="separateur">
+									<span class="input-group-btn">
+                             </span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<hr>
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Target variable</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="target" name="target_variable">
+									<span class="input-group-btn">
+                             </span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<hr>
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Predictive variables</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder='["age","sexe"]'  name="predictive">
+									<span class="input-group-btn">
+                             </span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<hr>
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Target Language</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder =Python name="targetLanguage">
+									<span class="input-group-btn">
+                             </span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<hr>
+
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Metrics</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder=accuracy  name="Metrics">
+									<span class="input-group-btn">
+                             </span>
+
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<hr>
+
+
+						<div class="row">
+							<div class="col-sm-0">
+								<h6 class="mb-0">Train size</h6>
+							</div>
+							<div class="col-sm-9 text-secondary">
+
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder=0.3 name="trainsize">
+									<span class="input-group-btn">
+                             </span>
+
+								</div><!-- /input-group -->
+
+							</div><!-- /.col-lg-6 -->
+
+						</div><!-- /.row -->
+						<div class="row">
+							<div class="col-sm-0">
+								<a class="btn btn-danger" href="http://localhost:8090/mml-web/Accueil.php" role="button">Annuler</a>
+								<input class="btn btn-info"  type="submit" value="Envoyez ma selection">
+
+
+							</div><!-- /.col-lg-6 -->
+
+						</div>
+
+						<hr>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

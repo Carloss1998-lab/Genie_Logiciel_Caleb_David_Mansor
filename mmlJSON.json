@@ -1,0 +1,1 @@
+{"dataset":{"filename":"kyphosis.csv","separator":","},"target_variable":"Kyphosis","metrics":["accuracy","precision","recall","f1"],"train_size":0.3,"targetLanguage":"R","predictive_Variables":["Age","Number"]}
